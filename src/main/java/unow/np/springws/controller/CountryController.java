@@ -1,7 +1,9 @@
 package unow.np.springws.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import unow.np.springws.domain.Country;
@@ -13,7 +15,6 @@ import java.util.List;
 @RequestMapping("/api/internal")
 public class CountryController {
     private final ICountryService iCountryService;
-//    private final CountryService iCountryService;
 
     @Autowired
     public CountryController(ICountryService iCountryService) {
@@ -30,9 +31,13 @@ public class CountryController {
         return iCountryService.getAllCountries();
     }
 
-    @GetMapping("/countryByCode")
-    public String getCountryByCode() {
-        return iCountryService.getCountryNameByCode();
+    @GetMapping("/countryByCode/{code}")
+    public ResponseEntity<String> getCountryByCode(@PathVariable("code") String countryCode) {
+        String countryName = iCountryService.getCountryNameByCode(countryCode);
+        if (countryName != null) {
+            return ResponseEntity.ok(countryName);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
-
 }

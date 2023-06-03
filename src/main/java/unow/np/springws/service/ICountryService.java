@@ -7,6 +7,8 @@ import java.util.List;
 public interface ICountryService {
 
     Country getCountry();
+
     List<String> getAllCountries();
-    String getCountryNameByCode();
+
+    String getCountryNameByCode(String countryCode);
 }

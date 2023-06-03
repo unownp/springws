@@ -9,6 +9,8 @@ import java.util.UUID;
 @Repository
 public interface CountryRepository extends JpaRepository<CountryEntity, UUID> {
     CountryEntity getByName(String name);
+
     CountryEntity findByName(String name);
+
     CountryEntity getByCodename(String codename);
 }

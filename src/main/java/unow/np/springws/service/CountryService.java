@@ -30,7 +30,7 @@ public class CountryService implements ICountryService {
     }
 
     @Override
-    public String getCountryNameByCode() {
-        return countryFromCountryEntity(countryRepository.getByCodename("FJ")).getName();
+    public String getCountryNameByCode(String countryCode) {
+        return countryFromCountryEntity(countryRepository.getByCodename(countryCode)).getName();
     }
 }
