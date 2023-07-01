@@ -8,7 +8,7 @@ import unow.np.springws.repository.CountryRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static unow.np.springws.domain.Country.countryFromCountryEntity;
+import static unow.np.springws.domain.Country.countryFromEntity;
 
 @Service
 public class CountryService implements ICountryService {
@@ -20,17 +20,17 @@ public class CountryService implements ICountryService {
     }
 
     public Country getCountry() {
-        return countryFromCountryEntity(countryRepository.getByName("Tanzania"));
+        return countryFromEntity(countryRepository.getByName("Tanzania"));
     }
 
     public List<String> getAllCountries() {
         return countryRepository.findAll().stream()
-                .map(Country::countryFromCountryEntity).map(Country::getName)
+                .map(Country::countryFromEntity).map(Country::getName)
                 .collect(Collectors.toList());
     }
 
     @Override
     public String getCountryNameByCode(String countryCode) {
-        return countryFromCountryEntity(countryRepository.getByCodename(countryCode)).getName();
+        return countryFromEntity(countryRepository.getByCodename(countryCode)).getName();
     }
 }

@@ -9,7 +9,7 @@ public class Country {
     private String codename;
     private UUID id;
 
-    public static Country countryFromCountryEntity(CountryEntity countryEntity) {
+    public static Country countryFromEntity(CountryEntity countryEntity) {
         Country country = new Country();
         country.setId(countryEntity.getId());
         country.setName(countryEntity.getName());

@@ -31,7 +31,7 @@ public class CountryController {
         return iCountryService.getAllCountries();
     }
 
-    @GetMapping("/countryByCode/{code}")
+    @GetMapping("/country/{code}")
     public ResponseEntity<String> getCountryByCode(@PathVariable("code") String countryCode) {
         String countryName = iCountryService.getCountryNameByCode(countryCode);
         if (countryName != null) {
