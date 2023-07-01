@@ -19,8 +19,8 @@ public class CountryService implements ICountryService {
         this.countryRepository = countryRepository;
     }
 
-    public Country getCountry() {
-        return countryFromEntity(countryRepository.getByName("Tanzania"));
+    public String getCountryCodeByName(String name) {
+        return countryFromEntity(countryRepository.getByName(name)).getCodename();
     }
 
     public List<String> getAllCountries() {

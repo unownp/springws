@@ -21,9 +21,14 @@ public class CountryController {
         this.iCountryService = iCountryService;
     }
 
-    @GetMapping("/country")
-    public Country getCountry() {
-        return iCountryService.getCountry();
+    @GetMapping("/country/name/{name}")
+    public ResponseEntity<String> getCountryByName(@PathVariable("name") String countryName) {
+        String countryCode = iCountryService.getCountryCodeByName(countryName);
+        if (countryCode != null) {
+            return ResponseEntity.ok(countryCode);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/allCountries")
@@ -31,7 +36,7 @@ public class CountryController {
         return iCountryService.getAllCountries();
     }
 
-    @GetMapping("/country/{code}")
+    @GetMapping("/country/code/{code}")
     public ResponseEntity<String> getCountryByCode(@PathVariable("code") String countryCode) {
         String countryName = iCountryService.getCountryNameByCode(countryCode);
         if (countryName != null) {
