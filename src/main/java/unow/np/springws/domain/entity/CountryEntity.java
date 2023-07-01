@@ -1,8 +1,13 @@
 package unow.np.springws.domain.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.UUID;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "countries")
 public class CountryEntity {
@@ -18,27 +23,4 @@ public class CountryEntity {
     @Column(nullable = false, unique = true)
     private String codename;
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCodename() {
-        return codename;
-    }
-
-    public void setCodename(String codename) {
-        this.codename = codename;
-    }
 }
